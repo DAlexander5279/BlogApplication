@@ -1,0 +1,25 @@
+<%- include('partials/header.ejs') %>
+    <div class="container">
+        <form action="/" method="post">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+
+                <input type="text" name="title" id="title" class="form-control" style="max-width: 30%;">
+            </div>
+
+
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" name="content" id="content" rows="6"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+
+                <input type="text" name="author" id="author" class="form-control" style="max-width: 30%;">
+            </div>
+            <button class="btn btn-primary" type="submit">Submit Blog</button>
+        </form>
+    </div>
+    <%- include('partials/footer.ejs') %>
