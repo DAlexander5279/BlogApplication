@@ -31,6 +31,8 @@ app.post("/create", (req, res) => {
 
 app.get("/post/:id", (req, res) => {
   let post = posts[req.params.id];
+  console.log(post);
+  res.render("post.ejs", { post: post });
 });
 
 app.listen(port, () => {
