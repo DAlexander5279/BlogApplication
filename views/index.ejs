@@ -1,3 +1,13 @@
 <%- include('partials/header.ejs') %>
-
+    <div class="container">
+        <% posts.forEach(element=> { %>
+            <a href="/post/<%= element.id %>">
+                <%= element.title %>
+            </a>
+            <p class="mb-3"><em>
+                    - <%= element.author %>
+                        <%= element.date %>
+                </em></p>
+            <% }) %>
+    </div>
     <%- include('partials/footer.ejs') %>

@@ -3,13 +3,12 @@ import express from "express";
 const app = express();
 const port = 3000;
 var posts = [];
-var currId = 0;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs", { posts: posts });
 });
 
 app.get("/create", (req, res) => {
@@ -19,17 +18,27 @@ app.get("/create", (req, res) => {
 app.post("/create", (req, res) => {
   let dte = new Date().toISOString().split("T")[0];
   let pst = {
-    id: currId,
+    id: 0,
     title: req.body.title,
     content: req.body.content,
     author: req.body.author,
     date: dte,
   };
-  currId += 1;
   posts.push(pst);
+  organizeId();
   res.render("index.ejs", { posts: posts });
+});
+
+app.get("/post/:id", (req, res) => {
+  let post = posts[req.params.id];
 });
 
 app.listen(port, () => {
   console.log(`Connected on port ${port}`);
 });
+
+function organizeId() {
+  for (let index = 0; index < posts.length; index++) {
+    posts[index].id = index;
+  }
+}
